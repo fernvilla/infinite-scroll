@@ -2,10 +2,19 @@ import faker from 'faker';
 
 const randomBoolean = () => Math.random() >= 0.5;
 const randomTimeOut = () => Math.floor(Math.random() * 1000);
-const generateVotesString = () => {
-  const num = faker.random.number();
 
+const generateNumString = num => {
   if (num >= 1000) return `${String(num).slice(0, 2).split('').join('.')}k`;
+
+  return num;
+};
+
+const randomImage = () => {
+  const min = 1;
+  const max = 20;
+  const int = Math.floor(Math.random() * (max - min + 1)) + min;
+
+  return `/images/${int}.jpg`;
 };
 
 export const generatePostsData = (size = 0, page = 1) => {
@@ -18,12 +27,12 @@ export const generatePostsData = (size = 0, page = 1) => {
         .map((_, i) => {
           return {
             id: i + 1,
-            votes: generateVotesString(),
+            votes: generateNumString(faker.random.number()),
             avatar: faker.image.avatar(),
             title: faker.lorem.sentence(),
             subreddit: faker.lorem.word(),
-            image: randomBoolean() ? faker.image.image() : null,
-            comments: faker.random.number(),
+            image: randomBoolean() ? randomImage() : null,
+            comments: generateNumString(faker.random.number()),
             text: faker.lorem.paragraph(),
             userName: faker.internet.userName()
           };
