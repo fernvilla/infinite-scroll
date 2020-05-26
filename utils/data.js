@@ -26,7 +26,7 @@ export const generatePostsData = (size = 0, page = 1) => {
         .fill()
         .map((_, i) => {
           return {
-            id: i + 1,
+            id: faker.random.uuid(),
             votes: generateNumString(faker.random.number()),
             avatar: faker.image.avatar(),
             title: faker.lorem.sentence(),
