@@ -63,7 +63,7 @@ const Home = () => {
         <Container maxWidth="md">
           <Grid container spacing={3}>
             <Grid item xs={8}>
-              <PostsContainer data={posts} isLoading={isLoading} loadMorePosts={updatePage} />
+              <PostsContainer data={posts} isLoading={isLoading} loadMorePosts={updatePage} currentPage={page} />
             </Grid>
 
             <Grid item xs={4}>
