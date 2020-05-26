@@ -9,7 +9,8 @@ const useStyles = makeStyles(theme => ({
     top: 24
   },
   content: {
-    padding: 0
+    padding: 0,
+    paddingBottom: '0px !important'
   },
   title: {
     padding: theme.spacing(1),
