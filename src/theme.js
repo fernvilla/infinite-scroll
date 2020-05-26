@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { red, grey, blueGrey } from '@material-ui/core/colors';
+import { red, blueGrey } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
@@ -11,6 +11,15 @@ const theme = createMuiTheme({
     },
     error: {
       main: red.A400
+    }
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        body: {
+          backgroundColor: blueGrey[100]
+        }
+      }
     }
   }
 });

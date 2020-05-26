@@ -3,12 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Container, Box, AppBar, Toolbar, Typography, Grid } from '@material-ui/core';
 import PostsContainer from '../components/PostsContainer';
 import SideBar from '../components/SideBar';
-import { grey, blueGrey } from '@material-ui/core/colors';
+import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: blueGrey[100],
     minHeight: '100vh'
   },
   appBar: {
