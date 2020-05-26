@@ -23,7 +23,11 @@ const Home = () => {
   const classes = useStyles();
   const [page, setPage] = useState(1);
   const [posts, setPosts] = useState([]);
-  const [isFetchingPosts, setIsFetchingPosts] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const postsData = {
+    page,
+    postsLength: posts.length
+  };
 
   useEffect(() => {
     getPosts();
@@ -31,16 +35,19 @@ const Home = () => {
 
   const getPosts = async () => {
     try {
-      setIsFetchingPosts(true);
+      setIsLoading(true);
 
       const res = await fetch(`/api/posts?page=${page}`);
       const { data } = await res.json();
 
-      setPosts(data);
+      setPosts([...posts, ...data]);
+      setIsLoading(false);
     } catch (err) {
-      setIsFetchingPosts(false);
+      setIsLoading(false);
     }
   };
+
+  const updatePage = () => setPage(page + 1);
 
   return (
     <div className={classes.root}>
@@ -56,11 +63,11 @@ const Home = () => {
         <Container maxWidth="md">
           <Grid container spacing={3}>
             <Grid item xs={8}>
-              <PostsContainer data={posts} isFetchingPosts={isFetchingPosts} />
+              <PostsContainer data={posts} isLoading={isLoading} loadMorePosts={updatePage} />
             </Grid>
 
             <Grid item xs={4}>
-              <SideBar />
+              <SideBar data={postsData} />
             </Grid>
           </Grid>
         </Container>
