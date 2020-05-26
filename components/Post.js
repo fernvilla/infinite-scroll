@@ -95,7 +95,11 @@ const Post = props => {
   return (
     <RootRef rootRef={cardRef}>
       <Box my={3} mt={0}>
-        <Card className={clsx([classes.card], hideComponent && [classes.hidden])} variant="outlined">
+        <Card
+          className={clsx([classes.card], hideComponent && [classes.hidden])}
+          variant="outlined"
+          style={hideComponent ? { height: cardRef.current.offsetHeight } : {}}
+        >
           {hideComponent ? (
             <Skeleton height={300} variant="rect" animation="wave" />
           ) : (
