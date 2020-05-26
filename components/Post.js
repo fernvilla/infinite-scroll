@@ -68,6 +68,7 @@ const useStyles = makeStyles(theme => ({
 const Post = props => {
   const { data, currentPage } = props;
   const [displayComponent, setDisplayComponent] = useState(true);
+  const [componentHeight, setComponentHeight] = useState('auto');
   const classes = useStyles();
   const cardRef = useRef(null);
   const hideComponent = !displayComponent && currentPage !== data.page;
@@ -89,6 +90,12 @@ const Post = props => {
   const interSectionCallback = (entries, observer) => {
     const first = entries[0];
 
+    if (!first.isIntersecting) {
+      setComponentHeight(cardRef.current.offsetHeight);
+    } else {
+      setComponentHeight('auto');
+    }
+
     setDisplayComponent(first.isIntersecting);
   };
 
@@ -98,7 +105,7 @@ const Post = props => {
         <Card
           className={clsx([classes.card], hideComponent && [classes.hidden])}
           variant="outlined"
-          style={hideComponent ? { height: cardRef.current.offsetHeight } : {}}
+          style={hideComponent ? { height: componentHeight } : {}}
         >
           {hideComponent ? (
             <Skeleton height={300} variant="rect" animation="wave" />

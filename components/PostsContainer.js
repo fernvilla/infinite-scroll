@@ -5,6 +5,9 @@ import { CircularProgress } from '@material-ui/core';
 import Post from './Post';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    minHeight: 1000
+  },
   progressContainer: {
     display: 'flex',
     justifyContent: 'center',
@@ -40,7 +43,7 @@ const PostsContainer = props => {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
       {data.map((d, i) => (
         <div ref={i === data.length - 1 ? setLastPost : undefined} key={d.id}>
           <Post data={d} currentPage={currentPage} />
